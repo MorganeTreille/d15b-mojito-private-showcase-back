@@ -1,11 +1,6 @@
 package fr.formation.modele;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import org.apache.catalina.User;
 
@@ -16,7 +11,7 @@ import java.util.*;
 public class Users extends Personnes{
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_user;
 
 	//**********************************cardinalites****************************//
