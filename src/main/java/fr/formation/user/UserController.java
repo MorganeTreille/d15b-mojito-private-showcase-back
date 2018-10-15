@@ -1,21 +1,38 @@
 package fr.formation.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController(value = "/users")
+@RestController
+@RequestMapping("/users")
 public class UserController {
 
 	@Autowired
 	private UserService userService;
 
-	@PutMapping("/")
-	public void signup(@RequestParam String username, @RequestParam String password,
-			@RequestParam String... roles) {
+	@PostMapping("/")
+	public ResponseEntity<Object> signup(@RequestBody SignInDto signInDto) {
 
-		userService.addNewUser(username, password, roles);
+		try {
+			userService.addNewUser(
+					signInDto.getUsername(), 
+					signInDto.getPassword(), 
+					signInDto.getEmail(), 
+					signInDto.getArtisteName(), 
+					signInDto.getDescription());
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} catch (IllegalArgumentException e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		
 
 	}
 

@@ -15,7 +15,7 @@ public class Artist {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name="name", nullable = false)
+	@Column(name="name", nullable = false, unique=true)
 	private String name;
 	
 	@Column(name="descriptionCourt", length = 200, nullable = false )
@@ -26,6 +26,8 @@ public class Artist {
 	
 	
 
+	public Artist() {}
+	
 	public Artist(Long id, String name, String descriptionCourt, String descriptionLong) {
 		super();
 		this.id = id;

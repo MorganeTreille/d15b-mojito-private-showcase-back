@@ -26,9 +26,9 @@ public class BoostrapData {
 
 	@EventListener(ContextRefreshedEvent.class)
 	public void onStart() {
-
-		userService.addNewUser("admin", passwordEncoder.encode("admin"), "ADMIN");
-		userService.addNewUser("user", passwordEncoder.encode("user"), "USER");
+		
+		//userService.addNewUser("admin", passwordEncoder.encode("admin"), "ADMIN");
+		//userService.addNewUser("user", passwordEncoder.encode("user"), "USER");
 
 	}
 
