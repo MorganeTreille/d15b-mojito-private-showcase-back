@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.formation.artist.Artist;
 
 /**
@@ -26,6 +27,7 @@ public class User {
     private String username;
     
     @Column(name="password")
+	@JsonIgnore
     private String password;
 
     @Column(name = "email")

@@ -12,6 +12,8 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
@@ -38,17 +40,25 @@ public class UserService implements UserDetailsService {
 		this.artistRepository = artistRepository;
 	}
 
+	public User getUser(String name) throws UserNotFoundException{
+	    User user = userRepository.findByUsername(name);
+	    if (user == null) {
+            throw new UserNotFoundException("utilisateur inexistant");
+        }
+
+        return user;
+	}
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findByUsername(username);
-
-		if (user != null) {
-			List<String> roles = userRoleRepository.findRoleByUserName(username);
-			return new org.springframework.security.core.userdetails.User(username, user.getPassword(),
-					transformToAuthorities(roles));
-		} else {
-			throw new UsernameNotFoundException("No user exists with username: " + username);
-		}
+		try {
+            User user = getUser(username);
+            List<String> roles = userRoleRepository.findRoleByUserName(username);
+            return new org.springframework.security.core.userdetails.User(username, user.getPassword(),
+                    transformToAuthorities(roles));
+        }catch (UserNotFoundException e){
+            throw new UsernameNotFoundException("No user exists with username: " + username);
+        }
 
 	}
 
@@ -97,13 +107,16 @@ public class UserService implements UserDetailsService {
 
 		User user = new User();
 		if(artist != null) {
-			user.setArtist(artist);		
-			user.setUsername(username);
-			user.setPassword(password);
-			user.setEmail(email);
-			user = userRepository.save(user);
-			roles.add("USER");
+			user.setArtist(artist);
 		}
+
+		user.setUsername(username);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		user.setPassword(encoder.encode(password));
+		user.setEmail(email);
+		user = userRepository.save(user);
+		roles.add("USER");
+
 
 		// 4- Création des roles pour l'utilisateur et insert en BDD
 		
