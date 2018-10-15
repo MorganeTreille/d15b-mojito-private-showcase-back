@@ -23,17 +23,36 @@ public class Artist {
 	
 	@Column(name="descriptionLong", nullable = true)
 	private String descriptionLong;
-	
-	
+
+	@Column(name="phoneNumber")
+	private Long phoneNumber;
+
+	@Column(name="address")
+	private String address;
+
+	@Column(name="email")
+	private String email;
+
+
 
 	public Artist() {}
 	
-	public Artist(Long id, String name, String descriptionCourt, String descriptionLong) {
+	public Artist(
+			Long id,
+			String name,
+			String descriptionCourt,
+			String descriptionLong,
+			Long phoneNumber,
+			String address,
+			String email) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.descriptionCourt = descriptionCourt;
 		this.descriptionLong = descriptionLong;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+		this.email = email;
 	}
 
 	public Long getId() {
@@ -67,6 +86,28 @@ public class Artist {
 	public void setDescriptionLong(String descriptionLong) {
 		this.descriptionLong = descriptionLong;
 	}
-	
-	
+
+	public Long getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(Long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }
