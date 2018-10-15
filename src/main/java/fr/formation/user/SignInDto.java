@@ -11,7 +11,7 @@ public class SignInDto implements Serializable{
 	private String password;
 	private String email;
 	private String description;
-	private String artisteName;
+	private String artistName;
 	
 	public SignInDto(){}
 	
@@ -21,7 +21,7 @@ public class SignInDto implements Serializable{
 		this.password = password;
 		this.email = email;
 		this.description = description;
-		this.artisteName = artisteName;
+		this.artistName = artistName;
 	}
 	public String getUsername() {
 		return username;
@@ -47,11 +47,11 @@ public class SignInDto implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getArtisteName() {
-		return artisteName;
+	public String getArtistName() {
+		return artistName;
 	}
-	public void setArtisteName(String artisteName) {
-		this.artisteName = artisteName;
+	public void setArtistName(String artistName) {
+		this.artistName = artistName;
 	}
 
 	

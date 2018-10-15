@@ -28,7 +28,7 @@ public class UserController extends AbstractController {
 					signInDto.getUsername(), 
 					signInDto.getPassword(), 
 					signInDto.getEmail(), 
-					signInDto.getArtisteName(), 
+					signInDto.getArtistName(),
 					signInDto.getDescription());
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (IllegalArgumentException e) {
@@ -42,7 +42,7 @@ public class UserController extends AbstractController {
 
 
 	}
-	@GetMapping("/poubelle")
+	@GetMapping("/userName")
 	@Secured("ROLE_USER")
 	public ResponseEntity<User> getUser() throws UserNotFoundException{
 		User user = userService.getUser(super.getAuthenticatedUserName());
