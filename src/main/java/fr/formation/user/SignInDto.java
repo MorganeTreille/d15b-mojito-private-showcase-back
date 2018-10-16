@@ -15,13 +15,13 @@ public class SignInDto implements Serializable{
 	
 	public SignInDto(){}
 	
-	public SignInDto(String username, String password, String email, String description, String artisteName) {
+	public SignInDto(String username, String password, String email, String artistName, String description) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		this.description = description;
 		this.artistName = artistName;
+		this.description = description;
 	}
 	public String getUsername() {
 		return username;

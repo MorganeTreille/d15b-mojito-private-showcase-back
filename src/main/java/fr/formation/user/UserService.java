@@ -74,7 +74,7 @@ public class UserService implements UserDetailsService {
 			String password, 
 			String email,
 			String artistName,
-			String descriptionCourt) throws IllegalArgumentException {
+			String description) throws IllegalArgumentException {
 		
 		// 1- Control des paramètres d'entées
 		Assert.notNull(username,"Le champ username est requis");
@@ -93,11 +93,11 @@ public class UserService implements UserDetailsService {
 		//    - Ajout du rôle artiste
 		Artist artist = null;
 		List<String> roles = new ArrayList<>();
-		if(artistName != null && descriptionCourt != null) {
+		if(artistName != null && description != null) {
 			logger.info("Création de l'artiste" + artistName);
 			artist = new Artist();
 			artist.setName(artistName);
-			artist.setDescriptionCourt(descriptionCourt);
+			artist.setDescription(description);
 			artist = artistRepository.save(artist);
 					
 			roles.add("ARTISTE");

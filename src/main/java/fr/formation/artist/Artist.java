@@ -18,8 +18,8 @@ public class Artist {
 	@Column(name="name", nullable = false, unique=true)
 	private String name;
 	
-	@Column(name="descriptionCourt", length = 200, nullable = false )
-	private String descriptionCourt;
+	@Column(name="description", length = 200, nullable = false )
+	private String description;
 	
 	@Column(name="descriptionLong", nullable = true)
 	private String descriptionLong;
@@ -40,7 +40,7 @@ public class Artist {
 	public Artist(
 			Long id,
 			String name,
-			String descriptionCourt,
+			String description,
 			String descriptionLong,
 			Long phoneNumber,
 			String address,
@@ -48,7 +48,7 @@ public class Artist {
 		super();
 		this.id = id;
 		this.name = name;
-		this.descriptionCourt = descriptionCourt;
+		this.description = description;
 		this.descriptionLong = descriptionLong;
 		this.phoneNumber = phoneNumber;
 		this.address = address;
@@ -71,12 +71,12 @@ public class Artist {
 		this.name = name;
 	}
 
-	public String getDescriptionCourt() {
-		return descriptionCourt;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescriptionCourt(String descriptionCourt) {
-		this.descriptionCourt = descriptionCourt;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getDescriptionLong() {
